@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node -e \"require('fs').cpSync('out','build',{recursive:true})\"",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "optimize-images": "node scripts/optimize-images.js",

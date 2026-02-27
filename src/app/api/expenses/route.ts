@@ -101,10 +101,7 @@ export async function DELETE(request: Request) {
 
         // Regular users can only delete their own records
         if (user.role !== 'admin' && target.userId !== user.id) {
-            return NextResponse.json(
-                { error: 'Forbidden' },
-                { status: 403 },
-            );
+            return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
         }
 
         const filtered = expenses.filter((e) => e.id !== id);

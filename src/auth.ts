@@ -1,8 +1,9 @@
-import NextAuth from 'next-auth';
+﻿import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { readFile } from 'fs/promises';
 import path from 'path';
+import { authConfig } from './auth.config';
 
 interface DbUser {
     id: string;
@@ -18,6 +19,7 @@ async function getUsers(): Promise<DbUser[]> {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+    ...authConfig,
     providers: [
         Credentials({
             credentials: {
@@ -25,8 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials) {
-                if (!credentials?.username || !credentials?.password)
-                    return null;
+                if (!credentials?.username || !credentials?.password) return null;
 
                 const users = await getUsers();
                 const user = users.find(
@@ -44,26 +45,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
         }),
     ],
-    callbacks: {
-        jwt({ token, user }) {
-            // On initial sign-in, `user` is populated — persist role to token
-            if (user) {
-                token.id = user.id;
-                token.role = (user as DbUser & { role: string }).role;
-            }
-            return token;
-        },
-        session({ session, token }) {
-            if (session.user) {
-                session.user.id = token.id as string;
-                (session.user as unknown as { role: string }).role =
-                    token.role as string;
-            }
-            return session;
-        },
-    },
-    pages: {
-        signIn: '/login',
-    },
-    session: { strategy: 'jwt' },
 });

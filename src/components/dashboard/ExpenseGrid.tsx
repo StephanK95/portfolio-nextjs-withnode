@@ -167,8 +167,7 @@ export function ExpenseGrid({
                                 role === 'admin'
                                     ? 'rgba(251,191,36,0.1)'
                                     : 'rgba(179,152,255,0.1)',
-                            color:
-                                role === 'admin' ? '#fbbf24' : '#b398ff',
+                            color: role === 'admin' ? '#fbbf24' : '#b398ff',
                             border: `1px solid ${
                                 role === 'admin'
                                     ? 'rgba(251,191,36,0.25)'
@@ -177,7 +176,7 @@ export function ExpenseGrid({
                         }}
                     >
                         {role === 'admin'
-                            ? '⭐ Viewing all users\' expenses'
+                            ? "⭐ Viewing all users' expenses"
                             : '👤 Viewing your expenses'}
                     </span>
                 </div>

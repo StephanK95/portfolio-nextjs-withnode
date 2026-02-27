@@ -10,11 +10,11 @@ that will be used in Phase 2 to scope what data they can see.
 
 ## Tech Stack Added
 
-| Package | Purpose |
-|---|---|
-| `next-auth@beta` | Authentication framework for Next.js App Router |
-| `bcryptjs` | Hashing and verifying passwords securely |
-| `@types/bcryptjs` | TypeScript types for bcryptjs |
+| Package           | Purpose                                         |
+| ----------------- | ----------------------------------------------- |
+| `next-auth@beta`  | Authentication framework for Next.js App Router |
+| `bcryptjs`        | Hashing and verifying passwords securely        |
+| `@types/bcryptjs` | TypeScript types for bcryptjs                   |
 
 ---
 
@@ -62,8 +62,8 @@ AUTH_URL=http://localhost:3000
 
 ```json
 [
-  { "id": "1", "username": "alice", "passwordHash": "...", "role": "user" },
-  { "id": "2", "username": "admin", "passwordHash": "...", "role": "admin" }
+    { "id": "1", "username": "alice", "passwordHash": "...", "role": "user" },
+    { "id": "2", "username": "admin", "passwordHash": "...", "role": "admin" }
 ]
 ```
 
@@ -73,6 +73,7 @@ AUTH_URL=http://localhost:3000
 - **This file is replaced by a real database or Entra in Phase 3.**
 
 > To generate a bcrypt hash manually:
+>
 > ```ts
 > import bcrypt from 'bcryptjs';
 > const hash = await bcrypt.hash('yourpassword', 12);
@@ -94,18 +95,19 @@ import bcrypt from 'bcryptjs';
 
 1. **`CredentialsProvider`** — tells Auth.js to accept a username + password form.
 2. **`authorize()`** — called on every login attempt:
-   - Reads `users.json`
-   - Finds the user by username
-   - Runs `bcrypt.compare(password, user.passwordHash)`
-   - If match → returns user object (id, name, role)
-   - If no match → returns `null` (login fails)
+    - Reads `users.json`
+    - Finds the user by username
+    - Runs `bcrypt.compare(password, user.passwordHash)`
+    - If match → returns user object (id, name, role)
+    - If no match → returns `null` (login fails)
 3. **`jwt` callback** — runs when the JWT is created/updated:
-   - Attaches `role` and `id` to the token so they persist in the session
+    - Attaches `role` and `id` to the token so they persist in the session
 4. **`session` callback** — runs when a session is read:
-   - Copies `role` and `id` from the token onto `session.user`
-   - This is how `useSession()` exposes the role in the UI
+    - Copies `role` and `id` from the token onto `session.user`
+    - This is how `useSession()` exposes the role in the UI
 
 #### Why JWT and not database sessions?
+
 JWT sessions are **stateless** — no database needed to validate a session.  
 The token is stored in a cookie, signed with `AUTH_SECRET`.  
 This is fine for Phase 1. In Phase 3 with Entra, the same pattern continues.
@@ -120,10 +122,10 @@ export const { GET, POST } = handlers;
 ```
 
 - This is a **catch-all API route** that Auth.js needs to handle:
-  - `POST /api/auth/signin` — processes login form
-  - `GET /api/auth/session` — returns current session
-  - `GET /api/auth/signout` — signs the user out
-  - `GET /api/auth/csrf` — returns CSRF token
+    - `POST /api/auth/signin` — processes login form
+    - `GET /api/auth/session` — returns current session
+    - `GET /api/auth/signout` — signs the user out
+    - `GET /api/auth/csrf` — returns CSRF token
 - You never call these manually — Auth.js and `useSession()` handle it internally.
 
 ---
@@ -144,6 +146,7 @@ export const config = {
 - This is enforced at the **Edge** (before the page even renders) — not client-side
 
 #### Why middleware and not just checking in the component?
+
 Client-side checks (`useSession()` in a component) can flash the page before redirecting.  
 Middleware runs **before** the response is sent — no flash, no unauthorized data exposure.
 
@@ -200,7 +203,7 @@ import { signIn } from 'next-auth/react';
 const result = await signIn('credentials', {
     username,
     password,
-    redirect: false,  // handle redirect manually
+    redirect: false, // handle redirect manually
 });
 
 if (result?.error) setError('Invalid username or password');
@@ -228,22 +231,29 @@ const username = session?.user?.name ?? '';
   doesn't include `role` — we added it ourselves in the `session` callback
 
 #### Role badge:
+
 ```tsx
-<span style={{
-    background: role === 'admin' ? 'rgba(251,191,36,0.15)' : 'rgba(179,152,255,0.15)',
-    color: role === 'admin' ? '#fbbf24' : '#b398ff',
-}}>
+<span
+    style={{
+        background:
+            role === 'admin'
+                ? 'rgba(251,191,36,0.15)'
+                : 'rgba(179,152,255,0.15)',
+        color: role === 'admin' ? '#fbbf24' : '#b398ff',
+    }}
+>
     {role === 'admin' ? '⭐ Admin' : '👤 User'}
 </span>
 ```
+
 - Gold badge for admins, purple for regular users
 
 #### Sign out:
+
 ```tsx
-<button onClick={() => signOut({ callbackUrl: '/login' })}>
-    Sign out
-</button>
+<button onClick={() => signOut({ callbackUrl: '/login' })}>Sign out</button>
 ```
+
 - `signOut()` clears the session cookie and redirects to `/login`
 
 ---
@@ -278,21 +288,21 @@ redirect to /dashboard ✅
 
 ## Test Credentials
 
-| Username | Password | Role |
-|---|---|---|
-| `alice` | `alice123` | 👤 User |
-| `admin` | `admin123` | ⭐ Admin |
+| Username | Password   | Role     |
+| -------- | ---------- | -------- |
+| `alice`  | `alice123` | 👤 User  |
+| `admin`  | `admin123` | ⭐ Admin |
 
 ---
 
 ## What Phase 1 Does NOT Do Yet
 
-| Feature | Phase |
-|---|---|
+| Feature                           | Phase   |
+| --------------------------------- | ------- |
 | Filter expenses by logged-in user | Phase 2 |
-| Admin sees all users' expenses | Phase 2 |
-| Microsoft Entra SSO | Phase 3 |
-| Real database for users | Phase 3 |
+| Admin sees all users' expenses    | Phase 2 |
+| Microsoft Entra SSO               | Phase 3 |
+| Real database for users           | Phase 3 |
 
 ---
 

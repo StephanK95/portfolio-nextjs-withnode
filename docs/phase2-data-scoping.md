@@ -5,10 +5,10 @@
 Phase 2 connects the authenticated identity from Phase 1 to the data layer.  
 Each expense is now **owned by a user**. What you see in the dashboard depends on who you are:
 
-| Role | What they see |
-|---|---|
-| `user` (e.g. alice) | Only their own expenses |
-| `admin` | All expenses from all users |
+| Role                | What they see               |
+| ------------------- | --------------------------- |
+| `user` (e.g. alice) | Only their own expenses     |
+| `admin`             | All expenses from all users |
 
 Enforcement happens **server-side** in the API — the client never receives data it shouldn't see.
 
@@ -16,13 +16,13 @@ Enforcement happens **server-side** in the API — the client never receives dat
 
 ## Changes Summary
 
-| File | What changed |
-|---|---|
-| `src/types/expense.ts` | Added `userId: string` field |
-| `src/data/expenses.json` | Stamped `userId` on all existing records |
-| `src/app/api/expenses/route.ts` | All 3 handlers now read session + apply role-based logic |
-| `src/components/dashboard/ExpenseGrid.tsx` | Added `role` prop + context banner |
-| `src/app/dashboard/page.tsx` | Passes `role` down to `ExpenseGrid` |
+| File                                       | What changed                                             |
+| ------------------------------------------ | -------------------------------------------------------- |
+| `src/types/expense.ts`                     | Added `userId: string` field                             |
+| `src/data/expenses.json`                   | Stamped `userId` on all existing records                 |
+| `src/app/api/expenses/route.ts`            | All 3 handlers now read session + apply role-based logic |
+| `src/components/dashboard/ExpenseGrid.tsx` | Added `role` prop + context banner                       |
+| `src/app/dashboard/page.tsx`               | Passes `role` down to `ExpenseGrid`                      |
 
 ---
 
@@ -57,6 +57,7 @@ Every record now has a `userId`:
 ```
 
 Existing records were split:
+
 - IDs 1–10 → `userId: "1"` (alice)
 - IDs 11–15 → `userId: "2"` (admin)
 
@@ -144,7 +145,7 @@ Added a `role` prop and a context banner below the grid title:
 ```tsx
 <span style={{ color: role === 'admin' ? '#fbbf24' : '#b398ff' }}>
     {role === 'admin'
-        ? '⭐ Viewing all users\' expenses'
+        ? "⭐ Viewing all users' expenses"
         : '👤 Viewing your expenses'}
 </span>
 ```
@@ -170,6 +171,7 @@ Added a `role` prop and a context banner below the grid title:
 ```
 
 Two layers of protection:
+
 1. **Middleware** (`middleware.ts`) — unauthenticated users can't even reach `/dashboard`
 2. **API route** (`route.ts`) — even if someone calls the API directly, no session = `401`
 
@@ -178,6 +180,7 @@ Two layers of protection:
 ## How to Test
 
 ### As alice (regular user)
+
 1. Log in with `alice` / `alice123`
 2. Dashboard shows **10 expenses** (IDs 1–10, owned by alice)
 3. Badge shows: **👤 Viewing your expenses**
@@ -185,6 +188,7 @@ Two layers of protection:
 5. Try to delete an expense (all visible ones are hers — works fine)
 
 ### As admin
+
 1. Log in with `admin` / `admin123`
 2. Dashboard shows **all expenses** from all users
 3. Badge shows: **⭐ Viewing all users' expenses**
@@ -194,9 +198,9 @@ Two layers of protection:
 
 ## What Phase 2 Does NOT Do Yet
 
-| Feature | Phase |
-|---|---|
-| Microsoft Entra SSO | Phase 3 |
-| Real database (PostgreSQL / Cosmos DB) | Phase 3 |
-| User registration / self-service | Phase 3 |
-| Per-user expense summary (admin analytics) | Future |
+| Feature                                    | Phase   |
+| ------------------------------------------ | ------- |
+| Microsoft Entra SSO                        | Phase 3 |
+| Real database (PostgreSQL / Cosmos DB)     | Phase 3 |
+| User registration / self-service           | Phase 3 |
+| Per-user expense summary (admin analytics) | Future  |

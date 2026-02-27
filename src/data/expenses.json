@@ -1,0 +1,137 @@
+[
+    {
+        "id": 1,
+        "date": "2026-02-01",
+        "category": "Food & Dining",
+        "description": "Lunch at Italian Restaurant",
+        "amount": 45.5,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 2,
+        "date": "2026-02-03",
+        "category": "Transportation",
+        "description": "Gas Station",
+        "amount": 60.0,
+        "paymentMethod": "Debit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 3,
+        "date": "2026-02-05",
+        "category": "Shopping",
+        "description": "Electronics Store - Headphones",
+        "amount": 129.99,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 4,
+        "date": "2026-02-07",
+        "category": "Bills & Utilities",
+        "description": "Internet Bill",
+        "amount": 79.99,
+        "paymentMethod": "Bank Transfer",
+        "status": "Paid"
+    },
+    {
+        "id": 5,
+        "date": "2026-02-10",
+        "category": "Food & Dining",
+        "description": "Grocery Shopping",
+        "amount": 156.75,
+        "paymentMethod": "Debit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 6,
+        "date": "2026-02-12",
+        "category": "Entertainment",
+        "description": "Movie Tickets",
+        "amount": 32.0,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 7,
+        "date": "2026-02-15",
+        "category": "Healthcare",
+        "description": "Pharmacy - Medication",
+        "amount": 24.5,
+        "paymentMethod": "Cash",
+        "status": "Paid"
+    },
+    {
+        "id": 8,
+        "date": "2026-02-17",
+        "category": "Transportation",
+        "description": "Uber Ride",
+        "amount": 18.75,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 9,
+        "date": "2026-02-20",
+        "category": "Shopping",
+        "description": "Clothing Store",
+        "amount": 89.99,
+        "paymentMethod": "Credit Card",
+        "status": "Pending"
+    },
+    {
+        "id": 10,
+        "date": "2026-02-22",
+        "category": "Food & Dining",
+        "description": "Coffee Shop",
+        "amount": 12.5,
+        "paymentMethod": "Debit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 11,
+        "date": "2026-02-23",
+        "category": "Bills & Utilities",
+        "description": "Electricity Bill",
+        "amount": 145.3,
+        "paymentMethod": "Bank Transfer",
+        "status": "Paid"
+    },
+    {
+        "id": 12,
+        "date": "2026-02-25",
+        "category": "Entertainment",
+        "description": "Streaming Subscription",
+        "amount": 14.99,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 13,
+        "date": "2026-02-26",
+        "category": "Food & Dining",
+        "description": "Restaurant Dinner",
+        "amount": 78.0,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 14,
+        "date": "2026-02-27",
+        "category": "Transportation",
+        "description": "Parking Fee",
+        "amount": 15.0,
+        "paymentMethod": "Cash",
+        "status": "Paid"
+    },
+    {
+        "id": 15,
+        "date": "2026-02-27",
+        "category": "Shopping",
+        "description": "Bookstore",
+        "amount": 42.0,
+        "paymentMethod": "Debit Card",
+        "status": "Pending"
+    }
+]

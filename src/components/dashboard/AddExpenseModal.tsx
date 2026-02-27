@@ -6,7 +6,7 @@ import { CATEGORIES, PAYMENT_METHODS } from '@/constants/expenses';
 
 interface AddExpenseModalProps {
     onClose: () => void;
-    onSubmit: (data: Omit<ExpenseData, 'id'>) => void;
+    onSubmit: (data: Omit<ExpenseData, 'id' | 'userId'>) => void;
     submitting: boolean;
 }
 

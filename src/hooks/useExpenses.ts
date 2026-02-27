@@ -34,7 +34,7 @@ export function useExpenses() {
             .catch((err: Error) => console.error(err.message));
     }, []);
 
-    const handleAdd = useCallback((data: Omit<ExpenseData, 'id'>) => {
+    const handleAdd = useCallback((data: Omit<ExpenseData, 'id' | 'userId'>) => {
         setSubmitting(true);
         fetch('/api/expenses', {
             method: 'POST',

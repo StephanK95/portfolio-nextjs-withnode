@@ -48,7 +48,7 @@ export default function Hero() {
             />
             {/* Weicher Übergang zur nächsten Section – langer Gradient per Framer Motion */}
             <motion.div
-                className="absolute inset-x-0 bottom-0 z-[1] pointer-events-none"
+                className="absolute inset-x-0 bottom-0 z-1 pointer-events-none"
                 style={{
                     height: '85%',
                     background: `linear-gradient(to bottom, 

@@ -1,11 +1,12 @@
 ﻿'use client';
 
 import { ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useExpenses } from '@/hooks/useExpenses';
 import { SummaryCard } from '@/components/dashboard/SummaryCard';
 import { AddExpenseModal } from '@/components/dashboard/AddExpenseModal';
 import { ExpenseGrid } from '@/components/dashboard/ExpenseGrid';
+import { SignOutButton } from '@/components/dashboard/SignOutButton';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -133,17 +134,7 @@ export default function DashboardPage() {
                                 {role === 'admin' ? '⭐ Admin' : '👤 User'}
                             </span>
                         </div>
-                        <button
-                            onClick={() => signOut({ callbackUrl: '/login' })}
-                            className="text-xs font-medium px-3 py-1.5 rounded-lg"
-                            style={{
-                                background: 'rgba(148,163,184,0.08)',
-                                color: 'rgba(148,163,184,0.7)',
-                                border: '1px solid rgba(148,163,184,0.12)',
-                            }}
-                        >
-                            Sign out
-                        </button>
+                        <SignOutButton />
                     </div>
                 </div>
 

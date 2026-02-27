@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { AgGridReact, CustomCellRendererProps } from 'ag-grid-react';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, GridApi } from 'ag-grid-community';
 import { ExpenseData } from '@/types/expense';
 import { portfolioTheme } from '@/lib/agGridTheme';
 import { DeleteCellRenderer } from './DeleteCellRenderer';
@@ -26,6 +26,8 @@ export function ExpenseGrid({
     onAddClick,
     role,
 }: ExpenseGridProps) {
+    const gridRef = useRef<GridApi<ExpenseData> | null>(null);
+
     const columnDefs = useMemo<ColDef<ExpenseData>[]>(
         () => [
             {
@@ -218,6 +220,13 @@ export function ExpenseGrid({
                     paginationPageSizeSelector={[10, 20, 50]}
                     enableCellTextSelection={true}
                     ensureDomOrder={true}
+                    // Stable row identity — AG Grid diffs by ID instead of
+                    // replacing the whole dataset, so scroll position and
+                    // current page are preserved when new rows arrive via SSE
+                    getRowId={(params) => String(params.data.id)}
+                    onGridReady={(params) => {
+                        gridRef.current = params.api;
+                    }}
                 />
             </div>
         </div>

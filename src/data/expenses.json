@@ -148,5 +148,35 @@
         "paymentMethod": "Credit Card",
         "status": "Paid",
         "userId": "2"
+    },
+    {
+        "id": 17,
+        "userId": "1",
+        "date": "2026-02-27",
+        "category": "Food",
+        "description": "Lunch",
+        "amount": 24.5,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 18,
+        "userId": "1",
+        "date": "2026-02-27",
+        "category": "Food",
+        "description": "Lunch3",
+        "amount": 24.5,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
+    },
+    {
+        "id": 19,
+        "userId": "1",
+        "date": "2026-02-27",
+        "category": "Food",
+        "description": "Lunch3",
+        "amount": 24.5,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
     }
 ]

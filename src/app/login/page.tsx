@@ -149,17 +149,51 @@ function LoginForm() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-2.5 rounded-lg text-sm font-semibold mt-1"
+                        className="w-full py-2.5 rounded-lg text-sm font-semibold mt-1 transition-all duration-200 active:scale-[0.98]"
                         style={{
                             background: loading
                                 ? 'rgba(179,152,255,0.1)'
                                 : 'rgba(179,152,255,0.18)',
-                            color: '#b398ff',
+                            color: loading
+                                ? 'rgba(179,152,255,0.4)'
+                                : '#b398ff',
                             border: '1px solid rgba(179,152,255,0.3)',
                             boxShadow: loading
                                 ? 'none'
                                 : '0 0 12px rgba(179,152,255,0.15)',
                             cursor: loading ? 'not-allowed' : 'pointer',
+                        }}
+                        onMouseEnter={(e) => {
+                            if (loading) return;
+                            const el = e.currentTarget;
+                            el.style.background = 'rgba(179,152,255,0.28)';
+                            el.style.borderColor = 'rgba(179,152,255,0.6)';
+                            el.style.boxShadow =
+                                '0 0 18px rgba(179,152,255,0.3)';
+                            el.style.color = '#cbb8ff';
+                        }}
+                        onMouseLeave={(e) => {
+                            if (loading) return;
+                            const el = e.currentTarget;
+                            el.style.background = 'rgba(179,152,255,0.18)';
+                            el.style.borderColor = 'rgba(179,152,255,0.3)';
+                            el.style.boxShadow =
+                                '0 0 12px rgba(179,152,255,0.15)';
+                            el.style.color = '#b398ff';
+                        }}
+                        onMouseDown={(e) => {
+                            if (loading) return;
+                            e.currentTarget.style.background =
+                                'rgba(179,152,255,0.38)';
+                            e.currentTarget.style.boxShadow =
+                                '0 0 24px rgba(179,152,255,0.45)';
+                        }}
+                        onMouseUp={(e) => {
+                            if (loading) return;
+                            e.currentTarget.style.background =
+                                'rgba(179,152,255,0.28)';
+                            e.currentTarget.style.boxShadow =
+                                '0 0 18px rgba(179,152,255,0.3)';
                         }}
                     >
                         {loading ? 'Signing in…' : 'Sign In'}

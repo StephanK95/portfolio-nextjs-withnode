@@ -6,16 +6,8 @@
         "description": "Lunch at Italian Restaurant",
         "amount": 45.5,
         "paymentMethod": "Credit Card",
-        "status": "Paid"
-    },
-    {
-        "id": 2,
-        "date": "2026-02-03",
-        "category": "Transportation",
-        "description": "Gas Station",
-        "amount": 60.0,
-        "paymentMethod": "Debit Card",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 3,
@@ -24,7 +16,8 @@
         "description": "Electronics Store - Headphones",
         "amount": 129.99,
         "paymentMethod": "Credit Card",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 4,
@@ -33,7 +26,8 @@
         "description": "Internet Bill",
         "amount": 79.99,
         "paymentMethod": "Bank Transfer",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 5,
@@ -42,16 +36,18 @@
         "description": "Grocery Shopping",
         "amount": 156.75,
         "paymentMethod": "Debit Card",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 6,
         "date": "2026-02-12",
         "category": "Entertainment",
         "description": "Movie Tickets",
-        "amount": 32.0,
+        "amount": 32,
         "paymentMethod": "Credit Card",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 7,
@@ -60,7 +56,8 @@
         "description": "Pharmacy - Medication",
         "amount": 24.5,
         "paymentMethod": "Cash",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 8,
@@ -69,7 +66,8 @@
         "description": "Uber Ride",
         "amount": 18.75,
         "paymentMethod": "Credit Card",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 9,
@@ -78,7 +76,8 @@
         "description": "Clothing Store",
         "amount": 89.99,
         "paymentMethod": "Credit Card",
-        "status": "Pending"
+        "status": "Pending",
+        "userId": "1"
     },
     {
         "id": 10,
@@ -87,7 +86,8 @@
         "description": "Coffee Shop",
         "amount": 12.5,
         "paymentMethod": "Debit Card",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 11,
@@ -96,7 +96,8 @@
         "description": "Electricity Bill",
         "amount": 145.3,
         "paymentMethod": "Bank Transfer",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "1"
     },
     {
         "id": 12,
@@ -105,33 +106,47 @@
         "description": "Streaming Subscription",
         "amount": 14.99,
         "paymentMethod": "Credit Card",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "2"
     },
     {
         "id": 13,
         "date": "2026-02-26",
         "category": "Food & Dining",
         "description": "Restaurant Dinner",
-        "amount": 78.0,
+        "amount": 78,
         "paymentMethod": "Credit Card",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "2"
     },
     {
         "id": 14,
         "date": "2026-02-27",
         "category": "Transportation",
         "description": "Parking Fee",
-        "amount": 15.0,
+        "amount": 15,
         "paymentMethod": "Cash",
-        "status": "Paid"
+        "status": "Paid",
+        "userId": "2"
     },
     {
         "id": 15,
         "date": "2026-02-27",
         "category": "Shopping",
         "description": "Bookstore",
-        "amount": 42.0,
+        "amount": 42,
         "paymentMethod": "Debit Card",
-        "status": "Pending"
+        "status": "Pending",
+        "userId": "2"
+    },
+    {
+        "id": 16,
+        "date": "2026-02-27",
+        "category": "Food & Dining",
+        "description": "McDonalds",
+        "amount": 23,
+        "paymentMethod": "Credit Card",
+        "status": "Paid",
+        "userId": "2"
     }
 ]

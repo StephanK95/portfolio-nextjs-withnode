@@ -11,10 +11,13 @@
     "prebuild": "npm run optimize-images"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "ag-grid-community": "^35.1.0",
     "ag-grid-react": "^35.1.0",
+    "bcryptjs": "^3.0.3",
     "framer-motion": "^12.34.3",
     "next": "16.1.6",
+    "next-auth": "^5.0.0-beta.30",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

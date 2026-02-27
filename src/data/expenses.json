@@ -178,5 +178,15 @@
         "amount": 24.5,
         "paymentMethod": "Credit Card",
         "status": "Paid"
+    },
+    {
+        "id": 20,
+        "userId": "1",
+        "date": "2026-02-27",
+        "category": "Food",
+        "description": "Lunch3",
+        "amount": 24.5,
+        "paymentMethod": "Credit Card",
+        "status": "Paid"
     }
 ]

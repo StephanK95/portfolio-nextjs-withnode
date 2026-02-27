@@ -1,14 +1,5 @@
 import { NextResponse } from 'next/server';
-import { readFile, writeFile } from 'fs/promises';
-import path from 'path';
-
-const DATA_PATH = path.join(process.cwd(), 'src', 'data', 'expenses.json');
-
-type Expense = {
-    id: number;
-    userId: string;
-    [key: string]: unknown;
-};
+import { sql } from '@/lib/db';
 
 type ExpenseBody = {
     userId: string;
@@ -69,16 +60,23 @@ export async function POST(request: Request) {
 
     // ── Persist ───────────────────────────────────────────────────
     try {
-        const file = await readFile(DATA_PATH, 'utf-8');
-        const expenses: Expense[] = JSON.parse(file);
+        const rows = await sql`
+            INSERT INTO expenses (user_id, date, category, description, amount, payment_method, status)
+            VALUES (${body.userId}, ${body.date}, ${body.category}, ${body.description}, ${body.amount}, ${body.paymentMethod}, ${body.status})
+            RETURNING *
+        `;
 
-        const newExpense: Expense = {
-            id: expenses.length > 0 ? expenses[expenses.length - 1].id + 1 : 1,
-            ...body,
+        const r = rows[0];
+        const newExpense = {
+            id: r.id,
+            userId: r.user_id,
+            date: r.date,
+            category: r.category,
+            description: r.description,
+            amount: Number(r.amount),
+            paymentMethod: r.payment_method,
+            status: r.status,
         };
-
-        expenses.push(newExpense);
-        await writeFile(DATA_PATH, JSON.stringify(expenses, null, 4), 'utf-8');
 
         return NextResponse.json(newExpense, { status: 201 });
     } catch (error) {

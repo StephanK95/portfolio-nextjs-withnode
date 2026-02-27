@@ -1,16 +1,7 @@
 import { NextResponse } from 'next/server';
-import { readFile, writeFile } from 'fs/promises';
-import path from 'path';
 import { auth } from '@/auth';
 import { Session } from 'next-auth';
-
-const DATA_PATH = path.join(process.cwd(), 'src', 'data', 'expenses.json');
-
-type Expense = {
-    id: number;
-    userId: string;
-    [key: string]: unknown;
-};
+import { sql } from '@/lib/db';
 
 type SessionUser = { id: string; role: string };
 
@@ -27,15 +18,24 @@ export async function GET() {
     }
 
     try {
-        const file = await readFile(DATA_PATH, 'utf-8');
-        const expenses: Expense[] = JSON.parse(file);
-
-        const result =
+        const rows =
             user.role === 'admin'
-                ? expenses
-                : expenses.filter((e) => e.userId === user.id);
+                ? await sql`SELECT * FROM expenses ORDER BY id ASC`
+                : await sql`SELECT * FROM expenses WHERE user_id = ${user.id} ORDER BY id ASC`;
 
-        return NextResponse.json(result);
+        // Map snake_case DB columns back to camelCase for the frontend
+        const expenses = rows.map((r) => ({
+            id: r.id,
+            userId: r.user_id,
+            date: r.date,
+            category: r.category,
+            description: r.description,
+            amount: Number(r.amount),
+            paymentMethod: r.payment_method,
+            status: r.status,
+        }));
+
+        return NextResponse.json(expenses);
     } catch (error) {
         console.error('Failed to read expenses:', error);
         return NextResponse.json(
@@ -55,17 +55,26 @@ export async function POST(request: Request) {
 
     try {
         const body = await request.json();
-        const file = await readFile(DATA_PATH, 'utf-8');
-        const expenses: Expense[] = JSON.parse(file);
+        const { date, category, description, amount, paymentMethod, status } =
+            body;
 
-        const newExpense: Expense = {
-            id: expenses.length > 0 ? expenses[expenses.length - 1].id + 1 : 1,
-            userId: user.id,
-            ...body,
+        const rows = await sql`
+            INSERT INTO expenses (user_id, date, category, description, amount, payment_method, status)
+            VALUES (${user.id}, ${date}, ${category}, ${description}, ${amount}, ${paymentMethod}, ${status})
+            RETURNING *
+        `;
+
+        const r = rows[0];
+        const newExpense = {
+            id: r.id,
+            userId: r.user_id,
+            date: r.date,
+            category: r.category,
+            description: r.description,
+            amount: Number(r.amount),
+            paymentMethod: r.payment_method,
+            status: r.status,
         };
-
-        expenses.push(newExpense);
-        await writeFile(DATA_PATH, JSON.stringify(expenses, null, 4), 'utf-8');
 
         return NextResponse.json(newExpense, { status: 201 });
     } catch (error) {
@@ -87,12 +96,12 @@ export async function DELETE(request: Request) {
 
     try {
         const { id } = await request.json();
-        const file = await readFile(DATA_PATH, 'utf-8');
-        const expenses: Expense[] = JSON.parse(file);
 
-        const target = expenses.find((e) => e.id === id);
+        // Fetch the row to check ownership before deleting
+        const existing =
+            await sql`SELECT user_id FROM expenses WHERE id = ${id}`;
 
-        if (!target) {
+        if (existing.length === 0) {
             return NextResponse.json(
                 { error: 'Expense not found' },
                 { status: 404 },
@@ -100,12 +109,11 @@ export async function DELETE(request: Request) {
         }
 
         // Regular users can only delete their own records
-        if (user.role !== 'admin' && target.userId !== user.id) {
+        if (user.role !== 'admin' && existing[0].user_id !== user.id) {
             return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
         }
 
-        const filtered = expenses.filter((e) => e.id !== id);
-        await writeFile(DATA_PATH, JSON.stringify(filtered, null, 4), 'utf-8');
+        await sql`DELETE FROM expenses WHERE id = ${id}`;
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error('Failed to delete expense:', error);

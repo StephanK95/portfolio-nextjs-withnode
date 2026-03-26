@@ -13,11 +13,11 @@ const cardVariants = {
   },
 };
 
-const techTags = ["ReactJS", "VueJS", "Next.JS", "Express", "TypeScript", "GraphQL"];
+const techTags = ["ReactJS", "VueJS", "Next.JS", "Express", "TypeScript", "GraphQL", "n8n"];
 
 export default function AboutCards() {
   return (
-    <section id="about" className="py-24 px-6 max-w-6xl mx-auto">
+    <section id="about" className="py-24 px-6 max-w-6xl mx-auto border-t border-white/5">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <motion.div
           className="card-glow rounded-2xl p-6 md:col-span-2 lg:col-span-1"
@@ -28,6 +28,38 @@ export default function AboutCards() {
         >
           <Image src="/assets/card-collaboration.webp" alt="Collaboration" width={400} height={144} className="w-full h-36 object-cover rounded-xl mb-4" />
           <p className="text-white font-medium leading-relaxed">I prioritize client collaboration, fostering open communication</p>
+        </motion.div>
+
+        <motion.div
+          className="card-glow rounded-2xl p-6 md:col-span-1 lg:col-span-1"
+          variants={cardVariants}
+          initial="offscreen"
+          whileInView="onscreen"
+          viewport={{ once: true, margin: "-40px" }}
+        >
+          <Image src="/assets/card-n8n-automation.svg" alt="n8n workflow automation" width={900} height={220} className="w-full h-44 object-cover rounded-xl mb-4" />
+          <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-2">Automation expertise</p>
+          <h3 className="text-white font-semibold text-lg leading-tight">n8n workflow architecture and integrations</h3>
+          <ul className="mt-4 grid gap-2 text-sm">
+            <li className="flex items-start gap-2 text-slate-300">
+              <svg className="w-4 h-4 mt-0.5 shrink-0 text-purple-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              Webhooks and event-driven flows
+            </li>
+            <li className="flex items-start gap-2 text-slate-300">
+              <svg className="w-4 h-4 mt-0.5 shrink-0 text-purple-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              Lead routing, notifications, and CRM sync
+            </li>
+            <li className="flex items-start gap-2 text-slate-300">
+              <svg className="w-4 h-4 mt-0.5 shrink-0 text-purple-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              Secure API orchestration with reliable error handling
+            </li>
+          </ul>
         </motion.div>
 
         <motion.div

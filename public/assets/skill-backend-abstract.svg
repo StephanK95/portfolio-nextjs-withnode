@@ -1,0 +1,44 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bb" x1="20" y1="20" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1225"/>
+      <stop offset="1" stop-color="#07091A"/>
+    </linearGradient>
+    <radialGradient id="bk1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(96 92) rotate(15) scale(140 110)">
+      <stop stop-color="#A78BFA" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bk2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(186 178) rotate(-10) scale(120 90)">
+      <stop stop-color="#60A5FA" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="steel" x1="70" y1="80" x2="210" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <filter id="gl" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="256" height="256" rx="32" fill="url(#bb)"/>
+  <rect width="256" height="256" rx="32" fill="url(#bk1)"/>
+  <rect width="256" height="256" rx="32" fill="url(#bk2)"/>
+
+  <g filter="url(#gl)">
+    <path d="M74 72h108c10 0 18 8 18 18v92c0 10-8 18-18 18H74c-10 0-18-8-18-18V90c0-10 8-18 18-18Z" fill="#0F172A" fill-opacity="0.35" stroke="url(#steel)" stroke-width="6"/>
+    <path d="M88 92h80v12H88z" fill="#FFFFFF" fill-opacity="0.05"/>
+    <path d="M88 114h80v12H88z" fill="#FFFFFF" fill-opacity="0.05"/>
+    <path d="M88 136h80v12H88z" fill="#FFFFFF" fill-opacity="0.05"/>
+    <path d="M88 158h48v12H88z" fill="#FFFFFF" fill-opacity="0.05"/>
+    <path d="M178 158h18v12h-18z" fill="#FFFFFF" fill-opacity="0.08"/>
+
+    <path d="M98 52l14 14" stroke="url(#steel)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M158 52l-14 14" stroke="url(#steel)" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>
+

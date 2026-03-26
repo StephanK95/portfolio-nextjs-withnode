@@ -71,7 +71,7 @@ export default function Hero() {
                     className="text-xs sm:text-sm font-medium text-slate-400 uppercase tracking-[0.2em] mb-4"
                     variants={item}
                 >
-                    Dynamic Web Magic with Next.js
+                    Next.js Development & n8n Automation
                 </motion.p>
                 <motion.h1
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
@@ -88,7 +88,7 @@ export default function Hero() {
                     className="mt-6 text-base sm:text-lg text-slate-400"
                     variants={item}
                 >
-                    Hi! I&apos;m John Doe, a Next.js Developer based in The USA
+                    Hi! I&apos;m John Doe, a Next.js Developer and n8n automation expert based in The USA
                 </motion.p>
                 <motion.div variants={item} className="mt-10">
                     <Link

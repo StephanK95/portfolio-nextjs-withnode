@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Contact() {
@@ -10,6 +10,7 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
   const [serverError, setServerError] = useState<string>("");
+  const [mounted, setMounted] = useState(false);
 
   const [touched, setTouched] = useState({
     name: false,
@@ -78,123 +79,188 @@ export default function Contact() {
     }
   }
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section id="contact" className="py-24 px-6 max-w-3xl mx-auto border-t border-white/5">
+    <section
+      id="contact"
+      className="py-24 px-6 max-w-3xl mx-auto border-t border-white/5"
+    >
       <div className="text-center">
         <h2 className="text-2xl sm:text-3xl font-bold text-white">Contact</h2>
         <p className="mt-4 text-slate-400">
-          Tell me about your project and I&apos;ll get back to you.
+          Tell me about your web project or n8n automation idea and I&apos;ll get back to you.
         </p>
       </div>
 
       <div className="mt-10 card-glow rounded-2xl p-6 sm:p-8">
-        <form onSubmit={onSubmit} className="grid gap-5">
-          <div className="grid sm:grid-cols-2 gap-5">
+        {mounted ? (
+          <form
+            onSubmit={onSubmit}
+            className="grid gap-5"
+            autoComplete="off"
+            data-lpignore="true"
+            suppressHydrationWarning
+          >
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-white/90">
+                  Your name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  value={name}
+                  autoComplete="off"
+                  data-lpignore="true"
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    setName(v);
+                    setTouched((t) => ({ ...t, name: t.name || v.trim().length > 0 }));
+                  }}
+                  placeholder="Jane Doe"
+                  disabled={submitting}
+                  className={`mt-2 w-full rounded-xl border bg-slate-900/20 px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 ${
+                    showNameError
+                      ? "border-rose-400/45 focus:ring-rose-400/25"
+                      : "border-white/10 focus:ring-purple-400/30"
+                  }`}
+                  aria-invalid={showNameError}
+                  aria-describedby={showNameError ? "name-error" : undefined}
+                  required
+                />
+                {showNameError ? (
+                  <p id="name-error" className="mt-2 text-xs text-rose-300">
+                    {errors.name}
+                  </p>
+                ) : null}
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-white/90">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={email}
+                  autoComplete="off"
+                  data-lpignore="true"
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    setEmail(v);
+                    setTouched((t) => ({ ...t, email: t.email || v.trim().length > 0 }));
+                  }}
+                  placeholder="jane@company.com"
+                  disabled={submitting}
+                  className={`mt-2 w-full rounded-xl border bg-slate-900/20 px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 ${
+                    showEmailError
+                      ? "border-rose-400/45 focus:ring-rose-400/25"
+                      : "border-white/10 focus:ring-purple-400/30"
+                  }`}
+                  aria-invalid={showEmailError}
+                  aria-describedby={showEmailError ? "email-error" : undefined}
+                  required
+                />
+                {showEmailError ? (
+                  <p id="email-error" className="mt-2 text-xs text-rose-300">
+                    {errors.email}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-white/90">
-                Your name
+              <label htmlFor="message" className="block text-sm font-medium text-white/90">
+                Message
               </label>
-              <input
-                id="name"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                onBlur={() => setTouched((t) => ({ ...t, name: true }))}
-                placeholder="Jane Doe"
-                className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/20 px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-400/30"
-                aria-invalid={showNameError}
-                aria-describedby={showNameError ? "name-error" : undefined}
+              <textarea
+                id="message"
+                name="message"
+                value={message}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  setMessage(v);
+                  setTouched((t) => ({
+                    ...t,
+                    message: t.message || v.trim().length > 0,
+                  }));
+                }}
+                placeholder="What are you building? What timeline are you aiming for?"
+                rows={5}
+                disabled={submitting}
+                data-lpignore="true"
+                autoComplete="off"
+                spellCheck={false}
+                autoCapitalize="off"
+                className={`mt-2 w-full resize-none rounded-xl border bg-slate-900/20 px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 ${
+                  showMessageError
+                    ? "border-rose-400/45 focus:ring-rose-400/25"
+                    : "border-white/10 focus:ring-purple-400/30"
+                }`}
+                aria-invalid={showMessageError}
+                aria-describedby={showMessageError ? "message-error" : undefined}
                 required
               />
-              {showNameError ? (
-                <p id="name-error" className="mt-2 text-xs text-rose-300">
-                  {errors.name}
+              {showMessageError ? (
+                <p id="message-error" className="mt-2 text-xs text-rose-300">
+                  {errors.message}
                 </p>
               ) : null}
             </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-white/90">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onBlur={() => setTouched((t) => ({ ...t, email: true }))}
-                placeholder="jane@company.com"
-                className="mt-2 w-full rounded-xl border border-white/10 bg-slate-900/20 px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-400/30"
-                aria-invalid={showEmailError}
-                aria-describedby={showEmailError ? "email-error" : undefined}
-                required
-              />
-              {showEmailError ? (
-                <p id="email-error" className="mt-2 text-xs text-rose-300">
-                  {errors.email}
-                </p>
-              ) : null}
-            </div>
-          </div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <p className="text-xs text-slate-400">Your message will be sent securely.</p>
 
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-white/90">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onBlur={() => setTouched((t) => ({ ...t, message: true }))}
-              placeholder="What are you building? What timeline are you aiming for?"
-              rows={5}
-              className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-slate-900/20 px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-400/30"
-              aria-invalid={showMessageError}
-              aria-describedby={showMessageError ? "message-error" : undefined}
-              required
-            />
-            {showMessageError ? (
-              <p id="message-error" className="mt-2 text-xs text-rose-300">
-                {errors.message}
-              </p>
-            ) : null}
-          </div>
-
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <p className="text-xs text-slate-400">Your message will be sent securely.</p>
-
-            <motion.button
-              type="submit"
-              className="btn-primary w-full sm:w-auto rounded-xl border border-white/10 px-6 py-3 font-medium text-white inline-flex items-center justify-center gap-2 cursor-pointer hover:bg-slate-700/40 transition disabled:opacity-60 disabled:cursor-not-allowed"
-              whileHover={{ scale: canSubmit ? 1.02 : 1 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 300, damping: 24 }}
-              disabled={!canSubmit}
-            >
-              {submitting ? "Sending..." : "Send message"}
-              <motion.span
-                initial={false}
-                whileHover={{ x: 4 }}
+              <motion.button
+                type="submit"
+                className="btn-primary w-full sm:w-auto rounded-xl border border-white/10 px-6 py-3 font-medium text-white inline-flex items-center justify-center gap-2 cursor-pointer hover:bg-slate-700/40 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                whileHover={{ scale: canSubmit ? 1.02 : 1 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                disabled={!canSubmit}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7h-10v10" />
-                </svg>
-              </motion.span>
-            </motion.button>
-          </div>
+                {submitting ? "Sending..." : "Send message"}
+                <motion.span
+                  initial={false}
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7h-10v10" />
+                  </svg>
+                </motion.span>
+              </motion.button>
+            </div>
 
-          {status === "sent" ? (
-            <p className="text-sm text-emerald-300">Thanks! Your message has been sent.</p>
-          ) : null}
-          {status === "error" ? (
-            <p className="text-sm text-rose-300">
-              Sorry — something went wrong sending your message. {serverError ? `(${serverError})` : null}
-            </p>
-          ) : null}
-        </form>
+            <div aria-live="polite" role="status">
+              {status === "sent" ? (
+                <p className="text-sm text-emerald-300">Thanks! Your message has been sent.</p>
+              ) : null}
+              {status === "error" ? (
+                <p className="text-sm text-rose-300">
+                  Sorry — something went wrong sending your message.{" "}
+                  {serverError ? `(${serverError})` : null}
+                </p>
+              ) : null}
+            </div>
+          </form>
+        ) : (
+          <div className="grid gap-5" aria-hidden="true">
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="h-14 rounded-xl border border-white/10 bg-white/5 animate-pulse" />
+              <div className="h-14 rounded-xl border border-white/10 bg-white/5 animate-pulse" />
+            </div>
+            <div className="h-40 rounded-xl border border-white/10 bg-white/5 animate-pulse" />
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="h-8 w-60 rounded-lg bg-white/5 animate-pulse" />
+              <div className="h-12 sm:h-11 w-44 sm:w-52 rounded-xl border border-white/10 bg-white/5 animate-pulse" />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

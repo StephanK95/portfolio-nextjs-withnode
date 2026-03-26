@@ -1,0 +1,83 @@
+<svg width="1200" height="525" viewBox="0 0 1200 525" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="525" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1225"/>
+      <stop offset="1" stop-color="#07091A"/>
+    </linearGradient>
+    <radialGradient id="gA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 150) rotate(25) scale(560 300)">
+      <stop stop-color="#7C3AED" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(980 380) rotate(-12) scale(560 320)">
+      <stop stop-color="#60A5FA" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stroke" x1="160" y1="120" x2="1040" y2="410" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="525" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="525" rx="40" fill="url(#gA)"/>
+  <rect width="1200" height="525" rx="40" fill="url(#gB)"/>
+
+  <!-- n8n skill: triggers -> transform -> destinations -->
+  <g opacity="0.14">
+    <path d="M140 90H1060M140 165H1060M140 240H1060M140 315H1060M140 390H1060" stroke="white" stroke-width="1"/>
+    <path d="M220 70V455M360 70V455M500 70V455M640 70V455M780 70V455M920 70V455" stroke="white" stroke-width="1"/>
+  </g>
+
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <!-- main workflow path -->
+    <path d="M220 180H420L520 265H720L860 335H1000" />
+    <!-- branching -->
+    <path d="M520 265V360L650 410H820" opacity="0.9"/>
+    <path d="M720 265V205L860 140H1040" opacity="0.9"/>
+  </g>
+
+  <!-- Nodes -->
+  <g>
+    <circle cx="220" cy="180" r="24" fill="#0F172A" stroke="#C4B5FD" stroke-width="5"/>
+    <circle cx="420" cy="180" r="20" fill="#0F172A" stroke="#DDD6FE" stroke-width="5"/>
+    <circle cx="520" cy="265" r="22" fill="#0F172A" stroke="#A78BFA" stroke-width="5"/>
+    <circle cx="720" cy="265" r="22" fill="#0F172A" stroke="#93C5FD" stroke-width="5"/>
+    <circle cx="860" cy="335" r="22" fill="#0F172A" stroke="#60A5FA" stroke-width="5"/>
+    <circle cx="1000" cy="335" r="26" fill="#0F172A" stroke="#38BDF8" stroke-width="5"/>
+    <circle cx="520" cy="360" r="20" fill="#0F172A" stroke="#C4B5FD" stroke-width="5"/>
+    <circle cx="650" cy="410" r="20" fill="#0F172A" stroke="#93C5FD" stroke-width="5"/>
+    <circle cx="820" cy="410" r="24" fill="#0F172A" stroke="#67E8F9" stroke-width="5"/>
+    <circle cx="720" cy="205" r="18" fill="#0F172A" stroke="#A5B4FC" stroke-width="5"/>
+    <circle cx="860" cy="140" r="18" fill="#0F172A" stroke="#7DD3FC" stroke-width="5"/>
+    <circle cx="1040" cy="140" r="22" fill="#0F172A" stroke="#22D3EE" stroke-width="5"/>
+  </g>
+
+  <!-- Trigger icon (webhook) -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M262 142c8-10 22-12 32-4" />
+    <path d="M294 138c10 8 12 22 4 32" />
+    <path d="M268 196c-10-8-12-22-4-32" />
+    <path d="M300 192c-8 10-22 12-32 4" />
+  </g>
+
+  <!-- Transform icon (funnel) -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M520 220h84l-34 38v40l-16 10v-50l-34-38z" fill="none"/>
+  </g>
+
+  <!-- Delivery panels (destinations) -->
+  <g opacity="0.9">
+    <rect x="740" y="360" width="360" height="110" rx="20" fill="#0B1225" fill-opacity="0.55" stroke="#60A5FA" stroke-opacity="0.25"/>
+    <rect x="770" y="392" width="240" height="14" rx="7" fill="#1E293B"/>
+    <rect x="770" y="418" width="180" height="14" rx="7" fill="#1E293B"/>
+    <circle cx="1070" cy="408" r="10" fill="#A78BFA" fill-opacity="0.55"/>
+  </g>
+</svg>
+

@@ -1,0 +1,69 @@
+<svg width="1200" height="525" viewBox="0 0 1200 525" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="525" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1225"/>
+      <stop offset="1" stop-color="#07091A"/>
+    </linearGradient>
+    <radialGradient id="a1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(420 150) rotate(18) scale(600 340)">
+      <stop stop-color="#2563EB" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="a2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(940 390) rotate(-12) scale(600 340)">
+      <stop stop-color="#A78BFA" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stroke" x1="180" y1="120" x2="1040" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="525" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="525" rx="40" fill="url(#a1)"/>
+  <rect width="1200" height="525" rx="40" fill="url(#a2)"/>
+
+  <!-- Azure/Kubernetes/Infra: cloud + secure boundary + cluster + pipeline -->
+  <g opacity="0.14">
+    <path d="M140 92H1060M140 168H1060M140 244H1060M140 320H1060M140 396H1060" stroke="white" stroke-width="1"/>
+    <path d="M220 70V455M360 70V455M500 70V455M640 70V455M780 70V455M920 70V455" stroke="white" stroke-width="1"/>
+  </g>
+
+  <!-- Cloud -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <path d="M320 290c-18 0-33-15-33-33 0-16 11-29 26-32 7-26 31-46 63-46 36 0 65 26 68 60 25 2 45 23 45 48 0 26-21 47-47 47H320z" fill="none"/>
+  </g>
+
+  <!-- Security boundary (shield) -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M560 168l78 30v70c0 54-40 90-78 104-38-14-78-50-78-104v-70l78-30z" fill="none"/>
+    <path d="M538 252l18 18 40-46" />
+  </g>
+
+  <!-- Cluster (Kubernetes-like) -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+    <path d="M820 250l70-40 70 40v80l-70 40-70-40v-80z" fill="none"/>
+    <circle cx="820" cy="250" r="14" fill="#0F172A" stroke="#93C5FD" stroke-width="6"/>
+    <circle cx="960" cy="250" r="14" fill="#0F172A" stroke="#A78BFA" stroke-width="6"/>
+    <circle cx="890" cy="370" r="16" fill="#0F172A" stroke="#60A5FA" stroke-width="6"/>
+    <path d="M834 260L878 296" />
+    <path d="M946 260L902 296" />
+    <path d="M890 354V316" />
+  </g>
+
+  <!-- CI/CD pipeline -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <path d="M260 140h150l40 40h150" />
+    <path d="M600 180l18-18-18-18" />
+    <circle cx="260" cy="140" r="10" fill="#0F172A" stroke="#C4B5FD" stroke-width="5"/>
+    <circle cx="450" cy="180" r="10" fill="#0F172A" stroke="#93C5FD" stroke-width="5"/>
+    <circle cx="600" cy="180" r="10" fill="#0F172A" stroke="#60A5FA" stroke-width="5"/>
+  </g>
+</svg>
+

@@ -1,0 +1,70 @@
+<svg width="1200" height="525" viewBox="0 0 1200 525" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="525" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1225"/>
+      <stop offset="1" stop-color="#07091A"/>
+    </linearGradient>
+    <radialGradient id="b1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(360 170) rotate(22) scale(600 340)">
+      <stop stop-color="#A78BFA" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(940 380) rotate(-10) scale(600 340)">
+      <stop stop-color="#60A5FA" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stroke" x1="180" y1="120" x2="1040" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="525" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="525" rx="40" fill="url(#b1)"/>
+  <rect width="1200" height="525" rx="40" fill="url(#b2)"/>
+
+  <!-- Backend: API Gateway -> services -> database, with auth -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <!-- API gateway -->
+    <rect x="180" y="180" width="220" height="170" rx="26" fill="none"/>
+    <path d="M210 220h160" opacity="0.8"/>
+    <path d="M210 252h120" opacity="0.8"/>
+    <path d="M210 284h140" opacity="0.8"/>
+
+    <!-- Auth lock -->
+    <path d="M272 152c0-22 18-40 40-40s40 18 40 40v16" opacity="0.9"/>
+    <rect x="250" y="168" width="124" height="96" rx="22" fill="none" opacity="0.9"/>
+    <circle cx="312" cy="214" r="10" />
+    <path d="M312 224v18" />
+
+    <!-- Flow arrows -->
+    <path d="M410 265h70" opacity="0.85"/>
+    <path d="M480 265l20-12-20-12" opacity="0.85"/>
+  </g>
+
+  <!-- Service mesh -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+    <rect x="520" y="160" width="220" height="90" rx="22" fill="none"/>
+    <rect x="520" y="270" width="220" height="90" rx="22" fill="none" opacity="0.9"/>
+    <rect x="780" y="215" width="220" height="90" rx="22" fill="none" opacity="0.88"/>
+    <path d="M740 205h40" opacity="0.8"/>
+    <path d="M740 315h40" opacity="0.8"/>
+  </g>
+
+  <!-- Database -->
+  <g filter="url(#glow)" stroke="url(#stroke)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M1030 330c0 22-38 40-85 40s-85-18-85-40" />
+    <path d="M860 330V240" />
+    <path d="M1030 330V240" />
+    <path d="M860 240c0-22 38-40 85-40s85 18 85 40" />
+    <path d="M860 240c0 22 38 40 85 40s85-18 85-40" opacity="0.9"/>
+    <path d="M860 285c0 22 38 40 85 40s85-18 85-40" opacity="0.7"/>
+  </g>
+</svg>
+

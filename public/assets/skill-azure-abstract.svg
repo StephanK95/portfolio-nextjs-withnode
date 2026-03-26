@@ -1,0 +1,53 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="20" y1="30" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1225"/>
+      <stop offset="1" stop-color="#07091A"/>
+    </linearGradient>
+    <radialGradient id="az1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 90) rotate(15) scale(130 100)">
+      <stop stop-color="#2563EB" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="az2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(190 185) rotate(-20) scale(120 90)">
+      <stop stop-color="#60A5FA" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glo" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="gridLine" x1="60" y1="70" x2="210" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="256" height="256" rx="32" fill="url(#bg2)"/>
+  <rect width="256" height="256" rx="32" fill="url(#az1)"/>
+  <rect width="256" height="256" rx="32" fill="url(#az2)"/>
+
+  <g opacity="0.25">
+    <path d="M60 60H200" stroke="white" stroke-width="1"/>
+    <path d="M60 85H200" stroke="white" stroke-width="1"/>
+    <path d="M60 110H200" stroke="white" stroke-width="1"/>
+    <path d="M60 135H200" stroke="white" stroke-width="1"/>
+    <path d="M60 160H200" stroke="white" stroke-width="1"/>
+    <path d="M60 185H200" stroke="white" stroke-width="1"/>
+    <path d="M80 60V200" stroke="white" stroke-width="1"/>
+    <path d="M105 60V200" stroke="white" stroke-width="1"/>
+    <path d="M130 60V200" stroke="white" stroke-width="1"/>
+    <path d="M155 60V200" stroke="white" stroke-width="1"/>
+    <path d="M180 60V200" stroke="white" stroke-width="1"/>
+  </g>
+
+  <g filter="url(#glo)" stroke="url(#gridLine)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78 128c-10 0-18-8-18-18 0-9 6-16 14-18 4-14 17-24 33-24 18 0 33 13 34 30 12 1 22 11 22 23 0 13-10 23-23 23H78z" fill="none"/>
+    <path d="M92 170l36-18 36 18" fill="none" opacity="0.95"/>
+    <path d="M92 170v28l36 16 36-16v-28" fill="none" opacity="0.95"/>
+    <path d="M128 152v62" fill="none" opacity="0.95"/>
+  </g>
+</svg>
+

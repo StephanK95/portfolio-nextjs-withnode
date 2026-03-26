@@ -1,0 +1,28 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g3" x1="36" y1="48" x2="220" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7DD3FC"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <radialGradient id="r3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(120 96) rotate(-25) scale(160 110)">
+      <stop stop-color="#38BDF8" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow3" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect x="16" y="16" width="224" height="224" rx="28" fill="#0B1225" fill-opacity="0.55"/>
+  <rect x="16" y="16" width="224" height="224" rx="28" fill="url(#r3)"/>
+
+  <g filter="url(#glow3)" stroke="url(#g3)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M82 146l30 30 62-88"/>
+    <path d="M64 116c-6-8-8-18-4-28 6-16 24-24 40-18"/>
+    <path d="M192 116c6-8 8-18 4-28-6-16-24-24-40-18"/>
+  </g>
+</svg>
+

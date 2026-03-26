@@ -1,0 +1,46 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fb" x1="20" y1="20" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1225"/>
+      <stop offset="1" stop-color="#07091A"/>
+    </linearGradient>
+    <radialGradient id="fr1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(100 90) rotate(18) scale(150 115)">
+      <stop stop-color="#7DD3FC" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#7DD3FC" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fr2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(190 185) rotate(-12) scale(130 90)">
+      <stop stop-color="#A78BFA" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge" x1="60" y1="70" x2="220" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <filter id="glowF" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="256" height="256" rx="32" fill="url(#fb)"/>
+  <rect width="256" height="256" rx="32" fill="url(#fr1)"/>
+  <rect width="256" height="256" rx="32" fill="url(#fr2)"/>
+
+  <g filter="url(#glowF)" stroke="url(#edge)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <path d="M70 82c0-12 10-22 22-22h74c12 0 22 10 22 22v90c0 12-10 22-22 22H92c-12 0-22-10-22-22V82z" fill="none"/>
+    <path d="M98 94h60" />
+    <path d="M98 120h44" />
+    <path d="M98 146h52" />
+    <path d="M176 78l26-18" />
+    <path d="M202 60v30" />
+  </g>
+
+  <g opacity="0.35">
+    <path d="M58 176C76 214 118 228 160 214" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M96 42c32 2 56 20 72 44" stroke="white" stroke-width="2" fill="none"/>
+  </g>
+</svg>
+

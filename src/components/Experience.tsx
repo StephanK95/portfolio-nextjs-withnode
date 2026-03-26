@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const jobs = [
   { img: "/assets/exp-intern.webp", title: "Frontend Engineer Intern", desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity." },
   { img: "/assets/exp-mobile.webp", title: "Mobile App Dev - JSM Tech", desc: "Designed and developed mobile app for both iOS & Android platforms using React Native." },
-  { img: "/assets/exp-freelance.webp", title: "Freelance App Dev Project", desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores." },
+  { img: "/assets/exp-freelance.webp", title: "Freelance Automation & App Project", desc: "Built n8n workflow automations for lead routing, notifications, and CRM sync while delivering the client-facing app." },
   { img: "/assets/exp-lead.webp", title: "Lead Frontend Developer", desc: "Developed and maintained user-facing features using modern frontend technologies." },
 ];
 
